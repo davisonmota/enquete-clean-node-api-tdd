@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/davisonmota/clean-node-api-tdd/issues"
   },
-  "homepage": "https://github.com/davisonmota/clean-node-api-tdd#readme"
+  "homepage": "https://github.com/davisonmota/clean-node-api-tdd#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^4.2.1"
+  }
 }
