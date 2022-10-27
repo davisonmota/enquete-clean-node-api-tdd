@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/davisonmota/clean-node-api-tdd#readme",
   "devDependencies": {
+    "@types/node": "^18.11.7",
     "git-commit-msg-linter": "^4.2.1",
-    "husky": "^8.0.1"
+    "husky": "^8.0.1",
+    "typescript": "^4.8.4"
   }
 }
