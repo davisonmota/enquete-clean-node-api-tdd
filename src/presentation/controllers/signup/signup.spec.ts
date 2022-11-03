@@ -161,7 +161,7 @@ describe('SingUp Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
-    expect(httpResponse.body).toEqual(new ServerError())
+    expect(httpResponse.body).toEqual(new ServerError('any_stackTrace'))
   })
 
   test('Should call AddAccount with correct values', async () => {
@@ -198,7 +198,7 @@ describe('SingUp Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
-    expect(httpResponse.body).toEqual(new ServerError())
+    expect(httpResponse.body).toEqual(new ServerError('any_stackTrace'))
   })
 
   test('Should return 200 if valid data is provided', async () => {
