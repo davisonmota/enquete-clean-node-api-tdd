@@ -2,7 +2,7 @@ import { HttpRequest, HttpResponse, Controller, EmailValidator } from './signup-
 import { InvalidParamError } from '../../errors'
 import { badRequest, ok, serverError } from '../../helpers/http-helper'
 import { AddAccount } from '../../../domain/usecases/add-account'
-import Validation from '../../helpers/validator/validation'
+import { Validation } from '../../helpers/validator/validation'
 
 export class SignUpController implements Controller {
   private readonly emailValidator: EmailValidator
