@@ -1,8 +1,6 @@
 # **Clean Node API**
 
-## [**Link para a documentação da API**](https://github.com/davisonmota/clean-node-api-tdd#clean-node-api)
-
-> ## APIs construídas no treinamento
+> ## APIs
 
 1. [Cadastro](./requirements/signup.md)
 2. [Login](./requirements/login.md)
