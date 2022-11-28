@@ -99,7 +99,7 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 * API Rest com Express
 * GraphQL com Apollo Server
 * Log de Erro
-* Segurança (Hashing, Encryption e Encoding)
+* Segurança (Hashing, Hashion e Encoding)
 * CORS
 * Middlewares
 * Nível de Acesso nas Rotas (Admin, User e Anônimo)
