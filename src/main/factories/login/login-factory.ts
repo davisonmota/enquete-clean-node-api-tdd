@@ -6,8 +6,8 @@ import { DbAuthentication } from '../../../data/usecases/authentication/db-authe
 import { LoginController } from '../../../presentation/controllers/login/login-controller'
 import { LogMongoRepository } from '../../../infra/db/mongodb/log/log-mongo-repository'
 import { AccountMongoRepository } from '../../../infra/db/mongodb/account/account-mongo-repository'
-import { BcryptAdapter } from '../../../infra/criptography/bcrypt-adapter/bcrypt-adapter'
-import { JwtAdapter } from '../../../infra/criptography/jwt-adapter/jwt-adapter'
+import { BcryptAdapter } from '../../../infra/cryptography/bcrypt-adapter/cryptography'
+import { JwtAdapter } from '../../../infra/cryptography/jwt-adapter/jwt-adapter'
 
 export const makeLoginController = (): Controller => {
   const salt = 12
