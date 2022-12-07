@@ -5,6 +5,8 @@
     "module": "CommonJS",
     "target": "ES2019",
     "esModuleInterop": true,
+    "sourceMap": true,
+    "incremental": true
   },
   "include": [
     "src"
