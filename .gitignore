@@ -1,7 +1,8 @@
 node_modules
 dist
 coverage
-.vscode/
+.vscode
 globalConfig.json
-data
+./data
+!src/data
 tsconfig.tsbuildinfo
