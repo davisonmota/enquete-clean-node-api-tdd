@@ -5,6 +5,25 @@ import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper'
 import app from '../config/app'
 import env from '../config/env'
 
+const makeAccessToken = async (): Promise<string> => {
+  const res = await accountCollection.insertOne({
+    name: 'Davison',
+    email: 'davison@gmail.com',
+    password: '123',
+    role: 'admin'
+  })
+  const id = res.insertedId
+  const accessToken = sign({ id }, env.jwtSecret)
+  await accountCollection.updateOne({
+    _id: id
+  }, {
+    $set: {
+      accessToken
+    }
+  })
+  return accessToken
+}
+
 let surveyCollection: Collection
 let accountCollection: Collection
 
@@ -41,21 +60,7 @@ describe('Survey Routes', () => {
     })
 
     test('Should return 204 on add surveys with valid accessToken', async () => {
-      const res = await accountCollection.insertOne({
-        name: 'Davison',
-        email: 'davison@gmail.com',
-        password: '123',
-        role: 'admin'
-      })
-      const id = res.insertedId
-      const accessToken = sign({ id }, env.jwtSecret)
-      await accountCollection.updateOne({
-        _id: id
-      }, {
-        $set: {
-          accessToken
-        }
-      })
+      const accessToken = await makeAccessToken()
       await request(app)
         .post('/api/surveys')
         .set('x-access-token', accessToken)
@@ -80,20 +85,7 @@ describe('Survey Routes', () => {
     })
 
     test('Should return 200 on load surveys with valid accessToken', async () => {
-      const res = await accountCollection.insertOne({
-        name: 'Davison',
-        email: 'davison@gmail.com',
-        password: '123'
-      })
-      const id = res.insertedId
-      const accessToken = sign({ id }, env.jwtSecret)
-      await accountCollection.updateOne({
-        _id: id
-      }, {
-        $set: {
-          accessToken
-        }
-      })
+      const accessToken = await makeAccessToken()
       await surveyCollection.insertMany([{
         question: 'any_question',
         date: new Date(),
@@ -106,6 +98,14 @@ describe('Survey Routes', () => {
         .get('/api/surveys')
         .set('x-access-token', accessToken)
         .expect(200)
+    })
+
+    test('Should return 204 on load surveys with valid accessToken and empty list surveys', async () => {
+      const accessToken = await makeAccessToken()
+      await request(app)
+        .get('/api/surveys')
+        .set('x-access-token', accessToken)
+        .expect(204)
     })
   })
 })
