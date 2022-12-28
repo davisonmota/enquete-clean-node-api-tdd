@@ -6,7 +6,7 @@
     "extends": "standard-with-typescript",
     "overrides": [],
     "parserOptions": {
-        "project": "./tsconfig.eslint.json",
+        "project": "./tsconfig.json",
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
