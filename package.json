@@ -13,6 +13,7 @@
     "test": "jest --passWithNoTests --noStackTrace --silent --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:unit:verbose": "npx jest --passWithNoTests --runInBand --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage"
