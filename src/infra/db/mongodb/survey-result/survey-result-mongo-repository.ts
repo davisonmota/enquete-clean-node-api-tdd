@@ -10,7 +10,7 @@ export class SurveyResultMongoRepository implements SaveSurveyResultRepository {
     }, {
       $set: {
         answer: data.answer,
-        data: data.date
+        date: data.date
       }
     }, {
       upsert: true,

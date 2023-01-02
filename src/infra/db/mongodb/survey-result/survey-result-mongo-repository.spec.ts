@@ -25,6 +25,9 @@ const makeSurvey = async (): Promise<SurveyModel> => {
     answers: [{
       image: 'any_image',
       answer: 'any_answer'
+    }, {
+      image: 'other_image',
+      answer: 'other_answer'
     }]
   })
   const survey = await surveyCollection.findOne({ _id: result.insertedId })
@@ -47,7 +50,7 @@ describe('SurveyMongoRepository', () => {
   beforeEach(async () => {
     surveyCollection = await MongoHelper.getCollection('surveys')
     await surveyCollection.deleteMany({})
-    surveyResultCollection = await MongoHelper.getCollection('surveysResults')
+    surveyResultCollection = await MongoHelper.getCollection('surveyResults')
     await surveyResultCollection.deleteMany({})
     accountCollection = await MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
@@ -67,6 +70,27 @@ describe('SurveyMongoRepository', () => {
       expect(surveyResult).toBeTruthy()
       expect(surveyResult.id).toBeTruthy()
       expect(surveyResult.answer).toBe(survey.answers[0].answer)
+    })
+
+    test('Should update survey result if its not new', async () => {
+      const survey = await makeSurvey()
+      const account = await makeAccount()
+      const res = await surveyResultCollection.insertOne({
+        surveyId: survey.id,
+        answer: survey.answers[0].answer,
+        accountId: account.id,
+        date: new Date()
+      })
+      const sut = makeSut()
+      const surveyResult = await sut.save({
+        surveyId: survey.id,
+        answer: survey.answers[1].answer,
+        accountId: account.id,
+        date: new Date()
+      })
+      expect(surveyResult).toBeTruthy()
+      expect(surveyResult.id).toBe(res.insertedId.toHexString())
+      expect(surveyResult.answer).toBe(survey.answers[1].answer)
     })
   })
 })
