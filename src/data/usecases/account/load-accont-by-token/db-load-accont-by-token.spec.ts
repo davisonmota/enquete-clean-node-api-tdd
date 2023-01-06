@@ -30,7 +30,7 @@ describe('DbLoadAccountByToken UseCase', () => {
 
   test('Should returns null if Decrypter returns null', async () => {
     const { sut, decryptStub } = makeSut()
-    jest.spyOn(decryptStub, 'decrypt').mockReturnValueOnce(new Promise(resolve => resolve(null)))
+    jest.spyOn(decryptStub, 'decrypt').mockReturnValueOnce(Promise.resolve(null))
     const httpResponse = await sut.load('any_token', 'any_role')
     expect(httpResponse).toBeNull()
   })
@@ -44,7 +44,7 @@ describe('DbLoadAccountByToken UseCase', () => {
 
   test('Should returns null if LoadAccountByTokenRepository returns null', async () => {
     const { sut, loadAccountByTokenRepositoryStub } = makeSut()
-    jest.spyOn(loadAccountByTokenRepositoryStub, 'loadByToken').mockReturnValueOnce(new Promise(resolve => resolve(null)))
+    jest.spyOn(loadAccountByTokenRepositoryStub, 'loadByToken').mockReturnValueOnce(Promise.resolve(null))
     const httpResponse = await sut.load('any_token', 'any_role')
     expect(httpResponse).toBeNull()
   })
