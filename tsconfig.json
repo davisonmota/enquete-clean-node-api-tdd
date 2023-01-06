@@ -16,6 +16,6 @@
   },
   "include": [
     "src"
-  ],
+, "src/main/docs/components/not-found.ts"  ],
   "exclude": []
 }
