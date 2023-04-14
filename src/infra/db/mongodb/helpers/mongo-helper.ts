@@ -28,5 +28,10 @@ export const MongoHelper = {
 
   mapCollection: (collection: any[]): any[] => {
     return collection.map(c => MongoHelper.map(c))
+  },
+
+  mapSurveyResult: (surveyResultMongo: any) => {
+    const { surveyId, ...documentWithoutSurveyId } = surveyResultMongo
+    return Object.assign({}, documentWithoutSurveyId, { surveyId: surveyId.toHexString() })
   }
 }
