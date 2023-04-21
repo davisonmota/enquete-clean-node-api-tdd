@@ -176,6 +176,6 @@ export class SurveyResultMongoRepository implements SaveSurveyResultRepository, 
 
     const [surveyResultMongo] = await surveyResultCollection.aggregate(query).toArray()
     const surveyResult: SurveyResultModel = MongoHelper.mapSurveyResult(surveyResultMongo)
-    return surveyResult
+    return surveyResult || null
   }
 }
