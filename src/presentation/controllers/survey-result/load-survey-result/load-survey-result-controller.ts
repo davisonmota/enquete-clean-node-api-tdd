@@ -1,5 +1,4 @@
-import { Controller, HttpRequest, HttpResponse } from './load-survey-result-controller-protocols'
-import { LoadSurveysById } from '../save-survey-result/save-survey-result-controller-protocols'
+import { Controller, HttpRequest, HttpResponse, LoadSurveysById } from './load-survey-result-controller-protocols'
 
 export class LoadSurveyResultController implements Controller {
   constructor (readonly loadSurveyById: LoadSurveysById) {}
